@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8" />
+	<meta name="keywords" content="" />
+	<meta name="description" content="" />
+	<title>rain sister</title>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+		}
+
+		html,
+		body {
+			width: 100%;
+			height: 100%;
+			background-color: rgb(255, 206, 194);
+			overflow: hidden;
+			position: relative;
+		}
+
+		.body-box {
+			width: 100%;
+			height: 100%;
+			position: relative;
+			top: 0;
+			left: 0;
+		}
+
+		.bir {
+			text-align: center;
+			font-size: 36px;
+			margin-top: 100px;
+			color: rgb(238, 83, 135);
+		}
+
+		.box {
+			position: relative;
+		}
+
+		.box .pic {
+			width: 600px;
+			position: relative;
+			margin: 0 auto;
+			perspective: 500px;
+			animation: play 10s linear infinite;
+			/*动画名称 执行时间 匀速 无限执行*/
+		}
+
+		.box img {
+			width: 600px;
+			position: absolute;
+			margin: 100px auto 0;
+		}
+
+		/*定义一个关键帧*/
+		@keyframes play {
+			0% {
+				transform: rotateY(0deg);
+			}
+
+			100% {
+				transform: rotateY(360deg);
+			}
+		}
+
+		.span {
+			position: relative;
+			text-align: center;
+		}
+
+		.span .span1 {
+			background-color: rgb(243, 229, 192);
+			color: rgb(97, 90, 91);
+			border-radius: 10px;
+			width: 150px;
+			height: 60px;
+			position: absolute;
+			top: 1100px;
+			left: 30%;
+			padding: 10px;
+		}
+
+		.span .span2 {
+			background-color: rgb(243, 229, 192);
+			color: rgb(97, 90, 91);
+			border-radius: 10px;
+			width: 150px;
+			height: 60px;
+			position: absolute;
+			top: 1100px;
+			left: 50%;
+			padding: 10px;
+		}
+
+		.xh {
+			position: absolute;
+			color: white;
+			top: 0;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="body-box">
+
+	</div>
+	<!-- <div class="bir">
+		<p>Happy birthday</p>
+	</div>
+	<div class="box">
+		<div class="pic"><img src="./img/rain-sister.png" alt="" /></div>
+	</div>
+	<div class="span">
+		<span class="span1">开心吗</span> <span class="span2">不开心</span>
+	</div>
+	<audio id="audio" src="music.mp3" autoplay="autoplay"></audio> -->
+	<!-- <embed src="music.mp3" hidden="true" /> -->
+
+	<!-- <script src="./js/jquery-1.9.1.min.js"></script> -->
+	<script>
+		let domBody = document.getElementsByClassName('body-box')[0];
+		console.log(domBody)
+		// var minSize = 5; 	//最小字体
+		// var maxSize = 80; 	//最大字体
+		// var newOne = 80; 	//生成雪花间隔
+		// var flakColor = "#fff"; //雪花颜色
+		// var flak = $("<div class='xh'></div>").css({ position: "absolute", top: "0px" }).html("❉"); //定义一个雪花
+		// var dhight = $(window).height() - 100; //定义视图高度
+		// var dw = $(window).width(); //定义视图宽度
+		// setInterval(function () {
+		// 	var sizeflak = minSize + Math.random() * maxSize; //产生大小不等的雪花
+		// 	var startLeft = Math.random() * dw; //雪花生成是随机的left值
+		// 	var startopcity = 0.7 + Math.random() * 0.3; //随机透明度
+		// 	var endpositionTop = dhight; //雪花停止top的位置
+		// 	var endLeft = Math.random() * dw; //雪花停止的left位置
+		// 	var durationfull = 5000 + Math.random() * 3000; //雪花飘落速度不同
+
+		// 	flak
+		// 		.clone()
+		// 		.appendTo($("body"))
+		// 		.css({
+		// 			left: startLeft,
+		// 			opacity: startopcity,
+		// 			"font-size": sizeflak,
+		// 			color: flakColor
+		// 		})
+		// 		.animate(
+		// 			{
+		// 				top: endpositionTop,
+		// 				left: endLeft,
+		// 				apacity: 0.1
+		// 			},
+		// 			durationfull,
+		// 			function () {
+		// 				$(this).remove();
+		// 			}
+		// 		);
+		// }, newOne);
+
+
+		var span1 = document.getElementsByTagName("span")[0];
+		var span2 = document.getElementsByTagName("span")[1];
+
+		//点击事件
+		// span1.addEventListener(
+		// 	"touchstart",
+		// 	function () {
+		// 		for (var i = 0; i < 6; i++) {
+		// 			(function (j) {
+		// 				if (j == 1) {
+		// 					alert("就知道你很开心");
+		// 					return;
+		// 				}
+		// 				if (j == 2) {
+		// 					alert("图片是从朋友圈里找的，只有这一张比较合适，别无选择了");
+		// 					return;
+		// 				}
+		// 				if (j == 4) {
+		// 					alert("配的音乐好听吗？");
+		// 					return;
+		// 				}
+		// 				if (j == 5) {
+		// 					alert("又是周杰伦的，哈哈哈");
+		// 					return;
+		// 				}
+		// 			})(i);
+		// 		}
+		// 	},
+		// 	false
+		// );
+		// span2.addEventListener(
+		// 	"touchstart",
+		// 	function () {
+		// 		alert("看到了吗？不开心连雪花都不飘了，整个世界都不好了！");
+		// 	},
+		// 	false
+		// );
+		// function audioAutoPlay(id) {
+		// 	var audio = document.getElementById(id);
+
+		// 	// audio.play();
+
+		// 	document.addEventListener("WeixinJSBridgeReady", function () {
+		// 		audio.play();
+		// 	}, false);
+		// 	document.addEventListener("YiXinJSBridgeReady", function () {
+		// 		audio.play();
+		// 	}, false);
+		// 	document.addEventListener("touchstart", function () {
+		// 		audio.play();
+		// 	}, false);
+		// }
+		// audioAutoPlay("audio");
+
+		let minSize = 100; 				//最小字体
+		let maxSize = 100; 				//最大字体
+		let interval = 80; 				//生成雪花间隔
+		let dw = domBody.offsetWidth;	//设备宽度
+		let dh = domBody.offsetHeight;	//设备高度
+		let size = minSize + Math.random() * maxSize; 		//雪花大小
+		let startLeft = Math.random() * dw;					//初始 left
+		let endLeft = Math.random() * dh;					//结束 left
+		let speed = (5000 + Math.random() * 3000) / 1000;	//飘落速度
+		let snow = document.createElement('span'); 			//创建雪花
+
+		snow.innerText = '*'
+		snow.classList.add('xh');
+		snow.style.top = 0;
+		snow.style.position = 'absolut';
+		snow.style.left = startLeft + 'px';
+		snow.style.fontSize = size + 'px';
+		domBody.appendChild(snow);
+
+		console.log(snow)
+		let style = document.styleSheets[0];
+		style.insertRule(`@keyframes fall {
+			from {
+				top: 0px;
+				left: ${startLeft}px;
+			}
+			to {
+				top: ${dh}px;
+				left: ${endLeft}px;
+			}
+		}`)
+		snow.style.animationName = 'fall';
+		snow.style.animationDuration = speed + 's';
+
+
+	</script>
+
+</body>
+
+</html>

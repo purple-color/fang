@@ -103,7 +103,7 @@
 
 <body>
 	<div class="body-box"></div>
-	<div class="content">
+	<!-- <div class="content">
 		<div class="bir">
 			<p>Hope your special day is amazing!</p>
 		</div>
@@ -116,17 +116,17 @@
 		</div>
 		<audio id="audio" src="music.mp3" loop autoplay preload="auto"></audio>
 	</div>
-	<embed src="music.mp3" hidden="true" />
+	<embed src="music.mp3" hidden="true" /> -->
 
 	<script>
 		let domBody = document.getElementsByClassName('body-box')[0];
-		let interval = 120;
+		let interval = 100;
+		let minSize = 6; 				//最小字体
+		let maxSize = 50; 				//最大字体
+		let dw = domBody.offsetWidth;	//设备宽度
+		let dh = domBody.offsetHeight;	//设备高度
 		//生成雪花定时器				
 		setInterval(function () {
-			let minSize = 10; 				//最小字体
-			let maxSize = 80; 				//最大字体
-			let dw = domBody.offsetWidth;	//设备宽度
-			let dh = domBody.offsetHeight;	//设备高度
 			let size = minSize + Math.random() * maxSize + 'px';	//雪花大小
 			let startLeft = Math.random() * dw;						//初始 left
 			let endLeft = Math.random() * dw;						//结束 left
@@ -154,33 +154,31 @@
 			}, fallSpeed)
 		}, interval)
 
-		var sure = document.getElementsByTagName("span")[0];
-		var none = document.getElementsByTagName("span")[1];
-		
-		sure.addEventListener(
-			"touchstart",
-			function () {
-				for (let i = 0; i < 6; i++) {
-					(function () {
-						if (i == 1) {
-							alert("感觉你可能会忽略自己的生日, 但是在这特殊的日子里,希望你能喜笑颜开");
-							return;
-						}
-						if (i == 2) {
-							alert("时间过得真快, 我们认识快一年了, 虽然磕磕绊绊, 更多的是我总惹你不高兴, 其实我很希望都能开开心心的");
-							return;
-						}
-						if (i == 4) {
-							alert("不要不理我好吗? 不理我的时候我很迷茫很无助");
-							return;
-						}
-						if (i == 5) {
-							alert("最后这首歌, 希望你喜欢");
-							return;
-						}
-					})();
-				}
-			},
+		let sure = document.getElementsByTagName("span")[0];
+		let none = document.getElementsByTagName("span")[1];
+
+		sure.addEventListener("touchstart", function () {
+			for (let i = 0; i < 6; i++) {
+				(function () {
+					if (i == 1) {
+						alert("感觉你可能会忽略自己的生日, 但是在这特殊的日子里,希望你能喜笑颜开");
+						return;
+					}
+					if (i == 2) {
+						alert("时间过得真快, 我们认识快一年了, 虽然磕磕绊绊, 更多的是我总惹你不高兴, 其实我很希望都能开开心心的");
+						return;
+					}
+					if (i == 4) {
+						alert("不要不理我好吗? 不理我的时候我很迷茫很伤心");
+						return;
+					}
+					if (i == 5) {
+						alert("最后这首歌, 希望你喜欢");
+						return;
+					}
+				})();
+			}
+		},
 			false
 		);
 

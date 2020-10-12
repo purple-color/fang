@@ -3,9 +3,7 @@
 
 <head>
 	<meta charset="utf-8" />
-	<meta name="keywords" content="" />
-	<meta name="description" content="" />
-	<title>rain sister</title>
+	<title>fang</title>
 	<style>
 		* {
 			margin: 0;
@@ -47,18 +45,25 @@
 
 		.pic {
 			width: 600px;
-			margin: 0 auto;
+			margin: 60px auto;
 			perspective: 500px;
 			animation: play 10s linear infinite;
 		}
 
 		.pic img {
 			width: 600px;
-			position: absolute;
-			margin: 100px auto 0;
+		}
+
+		.textBox {
+			margin-top: 60px;
+			text-align: left;
+			padding: 0 60px;
+			font-size: 36px;
+			color: rgb(117, 112, 112);
 		}
 
 		.btn-box {
+			font-size: 30px;
 			position: fixed;
 			width: 100%;
 			height: 200px;
@@ -105,14 +110,16 @@
 	<div class="body-box"></div>
 	<div class="content">
 		<div class="bir">
-			<p>Hope your special day is amazing!</p>
+			<p>Hope your special day is happy!</p>
 		</div>
 		<div class="pic">
-			<img src="./img/rain-sister.jpg" alt="" />
+			<img class="nowImg" src="./img/1.jpeg" alt="" />
+		</div>
+		<div class="textBox">
+			首先要祝我的乖宝宝生日快乐，冬天的第一场雪送给你。还记得吗? 这是我们第一张合影，是在 7 月 26 日一个炎热的大晚上，拍的还挺好看，从这天开始我可以看着我们的合照想念你了 .
 		</div>
 		<div class="btn-box">
-			<span>开心吗</span>
-			<span>不开心</span>
+			<span>点一点</span>
 		</div>
 		<audio id="audio" src="music.mp3" loop autoplay preload="auto"></audio>
 	</div>
@@ -120,12 +127,17 @@
 
 	<script>
 		let domBody = document.getElementsByClassName('body-box')[0];
-		let interval = 100;
-		let minSize = 6; 				//最小字体
-		let maxSize = 50; 				//最大字体
+		let textBox = document.getElementsByClassName('textBox')[0];
+		let clickBtn = document.getElementsByTagName("span")[0];
+		let currentImg = document.getElementsByClassName('nowImg')[0];
+
+		let minSize = 20; 				//最小字体
+		let maxSize = 60; 				//最大字体
 		let dw = domBody.offsetWidth;	//设备宽度
 		let dh = domBody.offsetHeight;	//设备高度
-		//生成雪花定时器				
+		let interval = 80;
+
+		// 生成雪花定时器	
 		setInterval(function () {
 			let size = minSize + Math.random() * maxSize + 'px';	//雪花大小
 			let startLeft = Math.random() * dw;						//初始 left
@@ -147,49 +159,53 @@
 			let timer = setInterval(function () {
 				snow.style.left = (startLeft += leftSpeed) + 'px';
 				snow.style.top = (top += topSpeed) + 'px';
-				if (parseInt(window.getComputedStyle(snow, null)['top']) > dh - 30) {
+				// console.log(parseInt(window.getComputedStyle(snow, null)['top']))
+				let maxHight = parseInt(window.getComputedStyle(snow, null)['top'])
+				let currentLeft = parseInt(window.getComputedStyle(snow, null)['left'])
+				if (maxHight > dh - 30 || currentLeft < 0 || currentLeft > dw) {
 					snow.remove();
 					clearInterval(timer)
 				}
 			}, fallSpeed)
 		}, interval)
 
-		let sure = document.getElementsByTagName("span")[0];
-		let none = document.getElementsByTagName("span")[1];
+		//定义图片数组
+		let imgArr = [
+			'./img/1.jpeg',
+			'./img/2.jpeg',
+			'./img/3.jpeg',
+			'./img/4.jpeg',
+			'./img/5.jpeg',
+			'./img/6.jpeg',
+		]
+		//定义文字数组
+		let textArr = [
+			'首先要祝我的乖宝宝生日快乐，冬天的第一场雪送给你。还记得吗? 这是我们第一张合影，是在 7 月 26 日一个炎热的大晚上，拍的还挺好看，从这天开始我可以看着我们的合照想念你了',
+			'还记得 8 月 11 号那天你说看咱俩能不能偶遇吗? 说实话当时吓我一跳郑州这么大，我真不知道上哪去才能遇见你。紧接着惊吓变成了惊喜，你直接来了我公司楼下，瞬间感觉欣喜若狂, 感觉自己好幸福好幸运遇见你',
+			'9 月 5 号有幸和你携手回家见我爸妈，很开心，就是忘记带你在村子里转一圈了。有点可惜我们回卢氏我们没有一起拍个合照，光拍天了!',
+			'农历 8 月 18 今天的菜肴真的有点丰盛，第一次一起做火锅吃，真的很美味，以后再吃锅底就交给你吧，哈哈!',
+			'晚上吃到了你亲手做的可乐鸡翅，那谁说你做饭不好吃的，肯定是个骗子，明明做的都这么美味可口.就在我刷碗的功夫你把蛋糕上的蜡烛点上了，还放着生日快乐的歌，吹完蜡烛，还有生日礼物用精美的盒子装着，满满的都是用心，虽然事先我知道了你要给我洗面奶，但还是忍不住的开心，开灯后竟然有一套情侣睡衣，这是我完全没想到的，那一刻感觉自己就是全世界最幸福的人，感谢上天让我遇见你!',
+			'今天真的是惊喜不断，再次感谢上天的眷顾让我和你遇见，都说相爱容易相处难，我知道我们未来的路可能不平坦，但是请相信不管前面是高山还是河流，我都会拉着你的手一起走，一起看沿途的风景，一起品尝生活的酸甜苦辣，一生很短但爱你很长!',
+		]
 
-		sure.addEventListener("touchstart", function () {
-			for (let i = 0; i < 6; i++) {
-				(function () {
-					if (i == 1) {
-						alert("雪花飘的这么好看为啥不开心呢, 是吧");
-						return;
+		//监听点一点按钮的点击
+		clickBtn.addEventListener("touchstart", function () {
+			let currentImgPath = currentImg.getAttribute('src');
+			imgArr.forEach((item, index) => {
+				if (currentImgPath == item) {
+					console.log(index);
+					if (index == 5) {
+						currentImg.setAttribute('src', imgArr[0]);
+						textBox.innerText = textArr[0]
+					} else {
+						currentImg.setAttribute('src', imgArr[index + 1]);
+						textBox.innerText = textArr[index + 1]
 					}
-					// if (i == 2) {
-					// 	alert("时间过得真快, 我们认识快一年了, 虽然磕磕绊绊, 更多的是我总惹你不高兴, 其实我很希望都能开开心心的");
-					// 	return;
-					// }
-					// if (i == 4) {
-					// 	alert("不要不理我好吗? 不理我的时候我很迷茫很伤心");
-					// 	return;
-					// }
-					// if (i == 5) {
-					// 	alert("最后这首歌, 希望你喜欢");
-					// 	return;
-					// }
-				})();
-			}
-		},
-			false
-		);
+				}
+			})
+		}, false);
 
-		none.addEventListener(
-			"touchstart",
-			function () {
-				alert("不开心容易变老! 所以你知道笑一笑十年少的由来了吧");
-			},
-			false
-		);
-
+		//兼容不同浏览器 自动播放音频
 		function audioAutoPlay(id) {
 			let audio = document.getElementById(id);
 			document.addEventListener("WeixinJSBridgeReady", function () {
@@ -203,6 +219,7 @@
 			}, false);
 		}
 		audioAutoPlay("audio");
+
 	</script>
 
 </body>

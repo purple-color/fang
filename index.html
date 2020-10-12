@@ -157,9 +157,9 @@
 			let timer = setInterval(function () {
 				snow.style.left = (startLeft += leftSpeed) + 'px';
 				snow.style.top = (top += topSpeed) + 'px';
-				let maxHight = parseInt(window.getComputedStyle(snow, null)['top'])
+				let currentHight = parseInt(window.getComputedStyle(snow, null)['top'])
 				let currentLeft = parseInt(window.getComputedStyle(snow, null)['left'])
-				if (maxHight > dh - 30 || currentLeft < 0 || currentLeft > dw) {
+				if (currentHight > dh - 50 || currentLeft < 0 || currentLeft > dw - 50) {
 					snow.remove();
 					clearInterval(timer)
 				}

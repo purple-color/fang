@@ -141,7 +141,6 @@
 		setInterval(function () {
 			let size = minSize + Math.random() * maxSize + 'px';	//雪花大小
 			let startLeft = Math.random() * dw;						//初始 left
-			let endLeft = Math.random() * dw;						//结束 left
 
 			// 创建一个雪花
 			let snow = document.createElement('span');
@@ -155,18 +154,16 @@
 			let top = 0;
 			let topSpeed = 8 * Math.random() + 4;
 			let leftSpeed = Math.random() > 0.5 ? 1 : -1
-			let fallSpeed = 30 * Math.random() + 10;
 			let timer = setInterval(function () {
 				snow.style.left = (startLeft += leftSpeed) + 'px';
 				snow.style.top = (top += topSpeed) + 'px';
-				// console.log(parseInt(window.getComputedStyle(snow, null)['top']))
 				let maxHight = parseInt(window.getComputedStyle(snow, null)['top'])
 				let currentLeft = parseInt(window.getComputedStyle(snow, null)['left'])
 				if (maxHight > dh - 30 || currentLeft < 0 || currentLeft > dw) {
 					snow.remove();
 					clearInterval(timer)
 				}
-			}, fallSpeed)
+			}, 20)
 		}, interval)
 
 		//定义图片数组

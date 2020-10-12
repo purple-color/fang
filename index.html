@@ -152,7 +152,7 @@
 
 			// 让雪花运动
 			let top = 0;
-			let topSpeed = 8 * Math.random() + 4;
+			let topSpeed = parseInt(10 * Math.random()) + 5;
 			let leftSpeed = Math.random() > 0.5 ? 1 : -1
 			let timer = setInterval(function () {
 				snow.style.left = (startLeft += leftSpeed) + 'px';
@@ -163,7 +163,7 @@
 					snow.remove();
 					clearInterval(timer)
 				}
-			}, 0)
+			}, 18)
 		}, interval)
 
 		//定义图片数组

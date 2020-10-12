@@ -186,7 +186,9 @@
 		]
 
 		//监听点一点按钮的点击
-		clickBtn.addEventListener("touchstart", function () {
+		clickBtn.addEventListener("touchstart", function (e) {
+			e.preventDefault();
+			e.stopPropagation();
 			let currentImgPath = currentImg.getAttribute('src');
 			imgArr.forEach((item, index) => {
 				if (currentImgPath == item) {

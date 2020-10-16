@@ -125,47 +125,78 @@
 	</div>
 	<embed src="music.mp3" hidden="true" />
 
+	<script src="./js/jquery-1.9.1.min.js"></script>
 	<script>
 		let domBody = document.getElementsByClassName('body-box')[0];
 		let textBox = document.getElementsByClassName('textBox')[0];
 		let clickBtn = document.getElementsByTagName("span")[0];
 		let currentImg = document.getElementsByClassName('nowImg')[0];
 
-		let minSize = 20; 				//最小字体
-		let maxSize = 60; 				//最大字体
-		let dw = domBody.offsetWidth;	//设备宽度
-		let dh = domBody.offsetHeight;	//设备高度
-		let interval = 80;
+		// let minSize = 20; 				//最小字体
+		// let maxSize = 60; 				//最大字体
+		// let dw = domBody.offsetWidth;	//设备宽度
+		// let dh = domBody.offsetHeight;	//设备高度
+		// let interval = 80;
 
 		// 生成雪花定时器	
+		// setInterval(function () {
+		// 	let size = minSize + Math.random() * maxSize + 'px';	//雪花大小
+		// 	let startLeft = Math.random() * dw;						//初始 left
+
+		// 	// 创建一个雪花
+		// 	let snow = document.createElement('span');
+		// 	snow.innerText = '❉'
+		// 	snow.classList.add('xh');
+		// 	snow.style.left = startLeft + 'px';
+		// 	snow.style.fontSize = size;
+		// 	domBody.appendChild(snow);
+
+		// 	// 让雪花运动
+		// 	let top = 0;
+		// 	let topSpeed = parseInt(10 * Math.random()) + 5;
+		// 	let leftSpeed = Math.random() > 0.5 ? 1 : -1
+		// 	{
+		// 		let timer = setInterval(function () {
+		// 			snow.style.left = (startLeft += leftSpeed) + 'px';
+		// 			snow.style.top = (top += topSpeed) + 'px';
+		// 			let currentHight = parseInt(window.getComputedStyle(snow, null)['top'])
+		// 			let currentLeft = parseInt(window.getComputedStyle(snow, null)['left'])
+		// 			if (currentHight > dh - 50 || currentLeft < 0 || currentLeft > dw - 50) {
+		// 				snow.remove();
+		// 				clearInterval(timer)
+		// 			}
+		// 		}, 15)
+		// 	}
+		// }, interval)
+
+		var minSize = 5; //最小字体
+		var maxSize = 50;//最大字体
+		var newOne = 100; //生成雪花间隔
+		var flakColor = "#fff"; //雪花颜色
+		var flak = $("<div class='xh'></div>").css({ position: "absolute", "top": "0px" }).html("❉");//定义一个雪花
+		var dhight = $(window).height(); //定义视图高度
+		var dw = $(window).width(); //定义视图宽度
 		setInterval(function () {
-			let size = minSize + Math.random() * maxSize + 'px';	//雪花大小
-			let startLeft = Math.random() * dw;						//初始 left
-
-			// 创建一个雪花
-			let snow = document.createElement('span');
-			snow.innerText = '❉'
-			snow.classList.add('xh');
-			snow.style.left = startLeft + 'px';
-			snow.style.fontSize = size;
-			domBody.appendChild(snow);
-
-			// 让雪花运动
-			let top = 0;
-			let topSpeed = parseInt(10 * Math.random()) + 5;
-			let leftSpeed = Math.random() > 0.5 ? 1 : -1
-			{let timer = setInterval(function () {
-				snow.style.left = (startLeft += leftSpeed) + 'px';
-				snow.style.top = (top += topSpeed) + 'px';
-				let currentHight = parseInt(window.getComputedStyle(snow, null)['top'])
-				let currentLeft = parseInt(window.getComputedStyle(snow, null)['left'])
-				if (currentHight > dh - 50 || currentLeft < 0 || currentLeft > dw - 50) {
-					snow.remove();
-					clearInterval(timer)
-				}
-			}, 15)}
-		}, interval)
-
+			var sizeflak = minSize + Math.random() * maxSize; //产生大小不等的雪花
+			var startLeft = Math.random() * dw; //雪花生成是随机的left值
+			var startopcity = 0.7 + Math.random() * 0.3; //随机透明度
+			var endpositionTop = dhight - 10; //雪花停止top的位置
+			var endLeft = Math.random() * dw; //雪花停止的left位置
+			var durationfull = 5000 + Math.random() * 3000; //雪花飘落速度不同
+			flak.clone().appendTo($("body")).css({
+				"left": startLeft,
+				"opacity": startopcity,
+				"font-size": sizeflak,
+				"color": flakColor
+			}).animate({
+				"top": endpositionTop,
+				"left": endLeft,
+				"apacity": 0.1
+			}, durationfull, function () {
+				$(this).remove()
+			});
+		}, newOne);
+		
 		//定义图片数组
 		let imgArr = [
 			'./img/1.png',
